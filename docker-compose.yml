@@ -12,7 +12,7 @@ nginx:
 php:
   image: php:5.6-fpm
   volumes:
-    - ./www:/var/www/html
+    - ./src:/var/www/html
   expose:
     - 9000
 
