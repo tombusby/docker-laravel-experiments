@@ -2,8 +2,7 @@ nginx:
   image: nginx:stable
   volumes:
     - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-  volumes_from:
-    - php
+    - ./src:/var/www/html
   links:
     - php:php
   ports:
@@ -12,6 +11,7 @@ nginx:
 php:
   image: php:5.6-fpm
   volumes:
+    - ./php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf:ro
     - ./src:/var/www/html
   expose:
     - 9000
