@@ -19,6 +19,15 @@ php:
   expose:
     - 9000
 
+# This will terminate once the migrations have been run
+run-migrations:
+  image: tombusby/php-fpm-mysql:latest
+  command: sh -c 'until php artisan migrate; do sleep 1; done'
+  links:
+    - mysql:mysql
+  volumes:
+    - ./src:/var/www/html
+
 mysql:
   image: mysql
   environment:
