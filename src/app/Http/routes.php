@@ -18,3 +18,12 @@ Route::get('/', function () {
 Route::get('endpointTest', function () {
     return "Yep, this works";
 });
+
+Route::get('dumpEnvVariables', function () {
+    dd($_SERVER);
+});
+
+Route::get('databaseTest', function () {
+    $users = DB::select('SELECT * FROM users;');
+    dd($users);
+});

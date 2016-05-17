@@ -1,3 +1,4 @@
+
 nginx:
   image: nginx:stable
   volumes:
@@ -9,10 +10,20 @@ nginx:
     - 80:80
 
 php:
-  image: php:5.6-fpm
+  image: tombusby/php-fpm-mysql:latest
   volumes:
     - ./php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf:ro
     - ./src:/var/www/html
+  links:
+    - mysql:mysql
   expose:
     - 9000
+
+mysql:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: 7wZTJyKbxfBt51o2fe2k  
+    MYSQL_DATABASE: laravel
+    MYSQL_USER: lavarel
+    MYSQL_PASSWORD: hunter2
 
